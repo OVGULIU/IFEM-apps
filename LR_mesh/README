@@ -1,5 +1,8 @@
 Simple C++ programs to generate LR mesh
 Requires LRSplines (http://lrbsplines.com/)
 
-Build with:
-g++ LRcrack.cpp -lLRSpline -std=c++0x
+Build with cmake;
+mkdir build
+cd build
+cmake .. -DCMAKE_BUILD_TYPE=Release
+make
