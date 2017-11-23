@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+<simulation>
+
+  <geometry Lx="4.0" Ly="4.0">
+    <refine type="uniform" patch="1" u="39" v="39" />
+    <topologysets>
+      <set name="right" type="edge">
+        <item patch="1">2</item>
+      </set>
+      <set name="left" type="edge">
+        <item patch="1">1</item>
+      </set>
+      <set name="tb" type="edge">
+        <item patch="1">3 4</item>
+      </set>
+      <set name="all" type="edge">
+        <item patch="1">1 2 3 4</item>
+      </set>
+    </topologysets>
+  </geometry>
+
+  <cahnhilliard>
+    <Gc>1.0</Gc>
+    <smearing>0.1</smearing>
+    <initial_crack type="expression">
+      xmin = 1.8; xmax=2.2; yline=2.0;
+      if(below(x,xmin),sqrt((x-xmin)*(x-xmin)+(y-yline)*(y-yline)),
+        if(below(x,xmax),abs(y-yline),
+          sqrt((x-xmax)*(x-xmax)+(y-yline)*(y-yline))))
+    </initial_crack>
+    <Lnorm>-1</Lnorm>
+  </cahnhilliard>
+
+  <elasticity>
+    <isotropic E="1.0" nu="0.2" rho="1000.0" />
+    <crackpressure value="-1e-1"/>
+    <boundaryconditions>
+      <dirichlet set="all" comp="12"/>
+    </boundaryconditions>
+  </elasticity>
+
+  <discretization>
+    <nGauss>2</nGauss>
+  </discretization>
+
+  <postprocessing>
+    <primarySolOnly />
+  </postprocessing>
+
+  <nonlinearsolver>
+    <dtol>1e12</dtol>
+    <maxIncr>20</maxIncr>
+    <rtol>1e-5</rtol>
+  </nonlinearsolver>
+
+  <timestepping>
+    <step start="0.0" end="1.0">1</step>
+  </timestepping>
+
+</simulation>
