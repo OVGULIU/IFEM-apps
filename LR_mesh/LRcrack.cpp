@@ -31,7 +31,7 @@ int main(int argc, char **argv) {
 
       // Refine if center is close to crack tip
       if ( (cx-0.5)*(cx-0.5) + (cy-0.5)*(cy-0.5) < radius*radius )
-	idx.push_back(i);
+        idx.push_back(i);
 
       ++i;
     }
@@ -41,9 +41,9 @@ int main(int argc, char **argv) {
 
   // make the C^{-1} crack
   lr.insert_const_v_edge(0.5, // constant v-value
-			 0,   // u_start
-			 0.5, // u_end
-			 p2); // multiplicity m (continuity is given by p-m-1)
+                         0,   // u_start
+                         0.5, // u_end
+                         p2); // multiplicity m (continuity is given by p-m-1)
 
   // write results to file
   ofstream myfile;

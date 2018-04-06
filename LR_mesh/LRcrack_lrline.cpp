@@ -40,32 +40,32 @@ int main(int argc, char **argv) {
 
       int i = 0;
       for(Basisfunction* b : lr.getAllBasisfunctions()) {
-	// Find center of basis support
-	double cx = (b->getParmin(0) + b->getParmax(0))/2.0;
-	double cy = (b->getParmin(1) + b->getParmax(1))/2.0;
+        // Find center of basis support
+        double cx = (b->getParmin(0) + b->getParmax(0))/2.0;
+        double cy = (b->getParmin(1) + b->getParmax(1))/2.0;
 
-	// Refine if center is close to line y=0.5 and x>0.5
-	if ( cx > (0.5-1.5*delta) && ( cy < (0.5+delta) && cy > (0.5-delta) )  ) {
-	  idx.push_back(i);
-	  cout << "  Tag basis function " << i << " for refinement" << endl;
-	}
+        // Refine if center is close to line y=0.5 and x>0.5
+        if ( cx > (0.5-1.5*delta) && ( cy < (0.5+delta) && cy > (0.5-delta) )  ) {
+          idx.push_back(i);
+          cout << "  Tag basis function " << i << " for refinement" << endl;
+        }
 
-	++i;
+        ++i;
       }
 
       lr.refineBasisFunction(idx);
 
       delta = 2.0*delta/3.0;
-	
+        
     }
 
   }
 
   // make the C^{-1} crack
   lr.insert_const_v_edge(0.5, // constant v-value
-			 0,   // u_start
-			 0.5, // u_end
-			 p2); // multiplicity m (continuity is given by p-m-1)
+                         0,   // u_start
+                         0.5, // u_end
+                         p2); // multiplicity m (continuity is given by p-m-1)
 
   // write results to screen
   // cout << lr << endl;
