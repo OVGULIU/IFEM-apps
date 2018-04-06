@@ -18,7 +18,7 @@ int main(int argc, char **argv) {
   const int lr_steps = 0; // Nr of refinement steps
         
   // construct object
-  LRSplineSurface lr = LRSplineSurface(n1,n2, p1,p2);
+  LRSplineSurface lr(n1,n2, p1,p2);
 
   for(Basisfunction* b : lr.getAllBasisfunctions()) {
     b->cp()[0] *= lx; // scale x-coordinate of this controlpoint

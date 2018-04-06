@@ -17,7 +17,7 @@ int main(int argc, char **argv) {
   double radius = 0.05; // Radius for refinement around crack tip
         
   // construct object
-  LRSplineSurface lr = LRSplineSurface(n1,n2, p1,p2);
+  LRSplineSurface lr(n1,n2, p1,p2);
 
   // Refinement loop   
   for (int ref=0; ref<lr_steps; ++ref) {
